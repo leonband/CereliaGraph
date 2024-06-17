@@ -1,14 +1,12 @@
+  <ion-content [fullscreen]="true">
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-title size="large">Riepilogo Consumi</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <div>
+  <div>
     <ion-grid class="grid">
       <ion-row>
         <ion-col>
@@ -19,13 +17,48 @@
             </ion-card-header>
           
             <ion-card-content>
-              PULSANTI VARI
               <ion-grid>
                 <ion-row>
                   <ion-col>
-                    <ion-datetime presentation="date" [multiple]="true" ></ion-datetime>                  </ion-col>
+                    <ion-datetime presentation="date" [multiple]="true" ></ion-datetime>                  
+                  </ion-col>
                   <ion-col>
                     <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <ion-list>
+                            <ion-item>
+                              <ion-checkbox>
+                                KW
+                              </ion-checkbox>
+                            </ion-item>
+                            <ion-item>
+                              <ion-checkbox>
+                                P
+                              </ion-checkbox>
+                            </ion-item>
+                            <ion-item>
+                              <ion-checkbox>
+                                KVAr
+                              </ion-checkbox>
+                            </ion-item>
+                          </ion-list>
+                        </ion-col>
+                        <ion-col>
+                          <ion-list>
+                            <ion-item>
+                              <ion-checkbox>
+                                KVA
+                              </ion-checkbox>
+                            </ion-item>
+                            <ion-item>
+                              <ion-checkbox>
+                                A
+                              </ion-checkbox>
+                            </ion-item>
+                          </ion-list>
+                        </ion-col>
+                      </ion-row>
                       <ion-row>
                         <ion-col>
                           <ion-list>
@@ -63,9 +96,6 @@
                   </ion-col>
                 </ion-row>
               </ion-grid>
-              
-              
-
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -73,13 +103,18 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>GRAFICO KW</ion-card-title>
-              <ion-card-subtitle>Grafico che mostra i KW del periodo e degli apparecchi selezionati</ion-card-subtitle>
+              <ion-card-title>GRAFICI CORRENTE ( A ) E TENSIONE ( V )</ion-card-title>
+              <ion-card-subtitle>Grafici che mostrano la corrente e la tenasione del periodo e degli apparecchi selezionati</ion-card-subtitle>
             </ion-card-header>
-          
             <ion-card-content>
-              GRAFICO
-              <ion-img src="../../assets/Cattura.png" ></ion-img>
+              <ion-list>
+                <ion-item>
+                  <ion-img src="../../assets/Cattura.png" ></ion-img> <p>     CORRENTE</p>
+                </ion-item>
+                <ion-item>
+                  <ion-img src="../../assets/Cattura.png"></ion-img>  <p>     TENSIONE</p>
+                </ion-item>
+            </ion-list>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -88,9 +123,11 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>GRAFICO POTENZA ATTIVA</ion-card-title>
-              <ion-card-subtitle>Grafico che mostra la potenza attiva del periodo e degli apparecchi
-                selezionati</ion-card-subtitle>
+              <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
+              <ion-card-subtitle>
+                Grafico che mostra la potenza attiva del periodo e degli apparecchi
+                selezionati
+              </ion-card-subtitle>
             </ion-card-header>
           
             <ion-card-content>
@@ -102,8 +139,10 @@
         <ion-col>
           <ion-card>
           <ion-card-header>
-            <ion-card-title>GRAFICO POTENZA REATTIVA</ion-card-title>
-            <ion-card-subtitle>Grafico che mostra la potenza reattiva del periodo e degli apparecchi selezionati</ion-card-subtitle>
+            <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
+            <ion-card-subtitle>
+              Grafico che mostra la potenza reattiva del periodo e degli apparecchi selezionati
+            </ion-card-subtitle>
           </ion-card-header>
         
           <ion-card-content>
@@ -117,9 +156,11 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>GRAFICO POTENZA APPARENTE</ion-card-title>
-              <ion-card-subtitle>Grafico che mostra la potenza apperente del periodo e degli apparecchi
-                selezionati</ion-card-subtitle>
+              <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
+              <ion-card-subtitle>
+                Grafico che mostra la potenza apperente del periodo e degli apparecchi
+                selezionati
+              </ion-card-subtitle>
             </ion-card-header>
           
             <ion-card-content>
@@ -131,9 +172,11 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>GRAFICO AMPERE</ion-card-title>
-              <ion-card-subtitle>Grafico che mostra la ampere del periodo e degli apparecchi
-                selezionati</ion-card-subtitle>
+              <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
+              <ion-card-subtitle>
+                Grafico che mostra la ampere del periodo e degli apparecchi
+                selezionati
+              </ion-card-subtitle>
             </ion-card-header>
           
             <ion-card-content>
@@ -144,7 +187,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-</div>
-
   </div>
 </ion-content>
