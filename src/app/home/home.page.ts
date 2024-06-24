@@ -26,6 +26,7 @@ export class HomePage implements OnInit{
   this.apiService.getdata().subscribe(
     data => {
       console.log('Data:', data);
+      this.data = data;
       // Handle the data here
     },
     error => {

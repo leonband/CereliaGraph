@@ -114,12 +114,10 @@
             </ion-card-header>
             <ion-card-content>
               <ion-list>
-                <div *ngIf="data">
-                    <pre>{{ data | json }}</pre>
-                </div>
-                <ion-button (click)="loadData()">Reload Data</ion-button>
                 <ion-item>
-                  <chart-container></chart-container><p>     TENSIONE</p>
+                  <div *ngIf="data">
+                    <chart-container></chart-container><p>     TENSIONE</p>
+                  </div>
                 </ion-item>
                 <ion-item>
                   <chart-container></chart-container><p>     CORRENTE</p>
