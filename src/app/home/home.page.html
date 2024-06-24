@@ -115,9 +115,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <div *ngIf="data">
-                    <chart-container></chart-container><p>     TENSIONE</p>
-                  </div>
+                    <chart-container *ngIf="data"></chart-container><p>     TENSIONE</p>
                 </ion-item>
                 <ion-item>
                   <chart-container></chart-container><p>     CORRENTE</p>

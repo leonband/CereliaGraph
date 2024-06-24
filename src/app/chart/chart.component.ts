@@ -47,7 +47,7 @@ export class ChartComponent implements OnInit {
 
    this.dataSource = {
       chart: chartConfigs,
-      data: this.data, // Assuming chartData is in the format required by FusionCharts
+      data: chartData, // Assuming chartData is in the format required by FusionCharts
     };
     
 }
