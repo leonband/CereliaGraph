@@ -8,14 +8,17 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "chart.component.html",
   styleUrls: ["chart.component.scss"]
 })
+
+
 export class ChartComponent implements OnInit {
   data: any = {};
+  dataSource!: object;
 
   constructor(private apiService: Tension) {
 
   }
   
-  dataSource!: object;
+
   ngOnInit(){
     this.loadData();
   }
@@ -25,6 +28,7 @@ export class ChartComponent implements OnInit {
     data => {
       console.log('Data:', data);
       this.configureChart(data);
+      console.log(data)
       // Handle the data here
     },
     error => {

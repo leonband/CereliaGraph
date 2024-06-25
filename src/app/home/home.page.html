@@ -20,7 +20,47 @@
               <ion-grid>
                 <ion-row>
                   <ion-col>
-                    <ion-datetime presentation="date" [multiple]="true" ></ion-datetime>                  
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <ion-card>
+                            <ion-card-header>
+                              <ion-label>------ Mese di Inizio -------</ion-label>
+                            </ion-card-header>
+                            <ion-card-content>
+                              <ion-datetime-button datetime="date1"></ion-datetime-button>
+                                <ion-modal [keepContentsMounted]="true">
+                                  <ng-template>
+                                    <ion-datetime id="date1" presentation="month-year" value="2023-11-02T01:22:00"></ion-datetime>
+                                  </ng-template>
+                                </ion-modal>
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                        
+                        <ion-col>
+                          <ion-card>
+                            <ion-card-header>
+                              <ion-label>------ Mese di Fine -------</ion-label>
+                            </ion-card-header>
+                            <ion-card-content>
+                              <ion-datetime-button datetime="date2"></ion-datetime-button>
+                              <ion-modal [keepContentsMounted]="true">
+                                <ng-template>
+                                  <ion-datetime id="date2" presentation="month-year" value="2023-11-02T01:22:00"></ion-datetime>
+                                </ng-template>
+                              </ion-modal>
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                        <ion-row>
+                          <ion-col>
+                            <ion-button>SELEZIONA PERIODO</ion-button>
+                          </ion-col>
+                        </ion-row>
+
+                        </ion-row>
+                      </ion-grid>
                   </ion-col>
                   <ion-col>
                   <ion-item-divider color="light">
@@ -95,7 +135,7 @@
                       </ion-row>
                       <ion-row>
                         <ion-col>
-                          <ion-button>EXPORT CSV</ion-button>
+                          <!--<ion-button>EXPORT CSV</ion-button>-->
                         </ion-col>
                       </ion-row>
                     </ion-grid>
@@ -133,7 +173,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-card>
+          <ion-card id="KW">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>

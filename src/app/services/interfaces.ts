@@ -1,4 +1,4 @@
 export interface ApiResult {
-  label: string;
-  value: string;
+  tempo: string;
+  Potenza_Attiva: string;
 }

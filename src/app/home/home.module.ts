@@ -6,6 +6,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { HomePage } from "./home.page";
 import { ChartModule } from "../chartTensione/chart.module";
+import { MultiPicker } from "ion-multi-picker";
 
 @NgModule({
   imports: [

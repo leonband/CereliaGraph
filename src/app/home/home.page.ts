@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
 import type { EChartsOption } from 'echarts';
 import { ChartModule } from '../chartTensione/chart.module'
 import { Tension } from '../services/tensione.service';
@@ -11,9 +11,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, RouterModule, CommonModule],
+  imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, RouterModule, IonModal, IonDatetimeButton, CommonModule],
 })
 export class HomePage implements OnInit{
+[x: string]: any;
   data: any;
   
   constructor(private apiService: Tension) {}
@@ -35,5 +36,32 @@ export class HomePage implements OnInit{
     }
   );
   }
+
+  packageEstimatedDated: any[] = [];
+  async validateDates(){
+    console.log("selected dates length:", this.packageEstimatedDated.length)
+    
+    if(this.packageEstimatedDated.length === 3){
+      console.log("after remove extra date", this.packageEstimatedDated)
+      this.packageEstimatedDated.splice(0,1)
+      console.log("after removed", this.packageEstimatedDated)
+    }
+  }
+
+   question = {
+    options: ['A', 'B'],
+  };
+
+    checkedItems = [];
+
+  /*onChange(item) {
+    if (this.checkedItems.includes(item)) {
+      this.checkedItems = this.checkedItems.filter((value: any) => value != item);
+      console.log('ciao ciao');
+    } else {
+      this.checkedItems.push(item);
+      console.log('Bau ciao');
+    }
+  }*/
   
 }
