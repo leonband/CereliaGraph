@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Tension } from './../services/tensione.service';
+import { Tension } from '../services/tensione.service';
 // chart.component.ts
 import { Component, OnInit } from "@angular/core";
 

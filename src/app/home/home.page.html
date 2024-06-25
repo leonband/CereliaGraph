@@ -114,11 +114,17 @@
             </ion-card-header>
             <ion-card-content>
               <ion-list>
+                <ion-item-divider color="light">
+                  <ion-label> TENSIONE </ion-label>
+                </ion-item-divider>
                 <ion-item>
-                    <chart-container *ngIf="data"></chart-container><p>     TENSIONE</p>
+                    <chart-container *ngIf="data"></chart-container>
                 </ion-item>
+                <ion-item-divider color="light">
+                  <ion-label> CORRENTE </ion-label>
+                </ion-item-divider>
                 <ion-item>
-                  <chart-container></chart-container><p>     CORRENTE</p>
+                  <chart-container *ngIf="data"></chart-container>
                 </ion-item>
             </ion-list>
             </ion-card-content>
@@ -137,8 +143,9 @@
             </ion-card-header>
           
             <ion-card-content>
-              GRAFICO
-              <ion-img src="../../assets/Cattura.png"></ion-img>
+              <ion-item>
+                <chart-container *ngIf="data"></chart-container>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -152,8 +159,9 @@
           </ion-card-header>
         
           <ion-card-content>
-            GRAFICO
-            <ion-img src="../../assets/Cattura.png"></ion-img>
+            <ion-item>
+              <chart-container *ngIf="data"></chart-container>
+            </ion-item>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -170,8 +178,9 @@
             </ion-card-header>
           
             <ion-card-content>
-              GRAFICO
-              <ion-img src="../../assets/Cattura.png"></ion-img>
+              <ion-item>
+                <chart-container *ngIf="data"></chart-container>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -186,8 +195,9 @@
             </ion-card-header>
           
             <ion-card-content>
-              GRAFICO
-              <ion-img src="../../assets/Cattura.png"></ion-img>
+              <ion-item>
+                <chart-container *ngIf="data"></chart-container>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-col>

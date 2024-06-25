@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel } from '@ionic/angular/standalone';
 import type { EChartsOption } from 'echarts';
-import { ChartModule } from '../chart/chart.module'
+import { ChartModule } from '../chartTensione/chart.module'
 import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';

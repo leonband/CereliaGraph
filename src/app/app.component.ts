@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { ChartModule } from './chart/chart.module'
+import { ChartModule } from './chartTensione/chart.module'
 
 
 @Component({
