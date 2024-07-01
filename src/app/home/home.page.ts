@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Input } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
 import type { EChartsOption } from 'echarts';
 import { ChartModule } from '../chartTensione/chart.module'
@@ -6,6 +6,7 @@ import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -16,18 +17,13 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HomePage implements OnInit{
 [x: string]: any;
-  data: any;
+  data: any
   _date = new Date().toISOString();
   dateValue: string = '';
   startDateValue: string = '';
   endDateValue: string = '';
 
-
-  
-  
-  constructor(private apiService: Tension) {
-
-  }
+  constructor(private apiService: Tension) {}
 
   ngOnInit(){
     //this.loadData();
@@ -74,7 +70,7 @@ export class HomePage implements OnInit{
     }
   }
 
-   startDateChanged(event: Event) {
+  startDateChanged(event: Event) {
     const customEvent = event as CustomEvent;
     const value = customEvent.detail.value;
     this.startDateValue = this.processDateChange(value);
@@ -89,16 +85,16 @@ export class HomePage implements OnInit{
   }
 
   processDateChange(value: string | string[]): string {
-  if (typeof value === 'string') {
-    console.log('Date changed to:', value);
-    return value;
-  } else if (Array.isArray(value)) {
-    console.log('Date changed to:', value[0]);
-    return value[0];
-  } else {
-    console.log('Date changed to an invalid value');
-    return '';
-  }
+    if (typeof value === 'string') {
+      console.log('Date changed to:', value);
+      return value;
+    } else if (Array.isArray(value)) {
+      console.log('Date changed to:', value[0]);
+      return value[0];
+    } else {
+      console.log('Date changed to an invalid value');
+      return '';
+    }
   }
 
   formatDate(val: string | number | Date): string {
@@ -116,7 +112,7 @@ export class HomePage implements OnInit{
     return date.toLocaleString('it-IT', options).replace(',', '');
   }
 
-    updateDatetimeValue() {
+  updateDatetimeValue() {
     const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
     if (this.startDateValue && this.endDateValue) {
       const formattedStartDate = this.formatDate(this.startDateValue);
@@ -130,14 +126,14 @@ export class HomePage implements OnInit{
 
   selectDate(){
     this.apiService.selectRangeDate(this.startDateValue, this.endDateValue).subscribe(
-      data => {
+      (data) => {
         console.log('Data:', data);
         this.data = data;
       },
       error => {
         console.error('Error:', error);
         // Handle the error here
-    }
+      }
     )
   }
 
@@ -145,7 +141,7 @@ export class HomePage implements OnInit{
     console.log(this.dateValue)
   }
 
-  loadData() {
+  /*loadData() {
   this.apiService.getdata().subscribe(
     data => {
       console.log('Data:', data);
@@ -157,7 +153,7 @@ export class HomePage implements OnInit{
       // Handle the error here
     }
   );
-  }
+  }*/
 
   packageEstimatedDated: any[] = [];
   async validateDates(){
@@ -170,11 +166,11 @@ export class HomePage implements OnInit{
     }
   }
 
-   question = {
+  question = {
     options: ['A', 'B'],
   };
 
-    checkedItems = [];
+  checkedItems = [];
 
   /*onChange(item) {
     if (this.checkedItems.includes(item)) {
