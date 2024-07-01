@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -16,5 +16,12 @@ export class Tension {
 
     getdata(): Observable<ApiResult>{
         return this.http.get<ApiResult>(`${BASE_URL}/api/porzionatrice_stop_cycle`);
+    }
+
+    selectRangeDate(startDate: string, endDate:string): Observable<ApiResult>{
+      let params = new HttpParams();
+      params = params.append('startDate', startDate);
+      params = params.append('endDate', endDate);
+      return this.http.get<ApiResult>(`${BASE_URL}/api/range_date`, {params: params});
     }
 }

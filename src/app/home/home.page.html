@@ -31,7 +31,8 @@
                               <ion-datetime-button datetime="date1"></ion-datetime-button>
                                 <ion-modal [keepContentsMounted]="true">
                                   <ng-template>
-                                    <ion-datetime id="date1" presentation="month-year" value="2023-11-02T01:22:00"></ion-datetime>
+                                    <ion-datetime id="date1" presentation="month-year" (ionChange)="startDateChanged($event)"></ion-datetime>
+                                    <div id="startDatetimeValue"></div>
                                   </ng-template>
                                 </ion-modal>
                             </ion-card-content>
@@ -47,7 +48,8 @@
                               <ion-datetime-button datetime="date2"></ion-datetime-button>
                               <ion-modal [keepContentsMounted]="true">
                                 <ng-template>
-                                  <ion-datetime id="date2" presentation="month-year" value="2023-11-02T01:22:00"></ion-datetime>
+                                  <ion-datetime id="date2" presentation="month-year" (ionChange)="endDateChanged($event)"></ion-datetime>
+                                  <div id="endDatetimeValue"></div>
                                 </ng-template>
                               </ion-modal>
                             </ion-card-content>
@@ -55,7 +57,7 @@
                         </ion-col>
                         <ion-row>
                           <ion-col>
-                            <ion-button>SELEZIONA PERIODO</ion-button>
+                            <ion-button (click)="selectDate()">SELEZIONA PERIODO</ion-button>
                           </ion-col>
                         </ion-row>
 

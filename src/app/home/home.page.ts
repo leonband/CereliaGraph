@@ -5,6 +5,7 @@ import { ChartModule } from '../chartTensione/chart.module'
 import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,105 @@ import { CommonModule } from '@angular/common';
 export class HomePage implements OnInit{
 [x: string]: any;
   data: any;
+  _date = new Date().toISOString();
+  dateValue: string = '';
+  startDateValue: string = '';
+  endDateValue: string = '';
+
+
   
-  constructor(private apiService: Tension) {}
+  
+  constructor(private apiService: Tension) {
+
+  }
 
   ngOnInit(){
-    this.loadData();
+    //this.loadData();
+
+    const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
+    const datetime = document.querySelector('#datetime') as HTMLIonDatetimeElement;
+
+    function setDateTimeValue(val: string) {
+      if (val) {
+        const date = new Date(val);
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const text = new Intl.DateTimeFormat('en', options).format(date);
+        datetimeValue.innerText = text;
+        console.log('Selected date:', text); // Print the selected date
+      } else {
+        datetimeValue.innerText = 'Invalid date';
+        console.log('Invalid date selected');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (datetime && datetime.value) {
+        setDateTimeValue(datetime.value as string);
+      }
+    });
+
+    if (datetime) {
+      datetime.addEventListener('ionChange', (e: CustomEvent) => {
+        const value = e.detail.value;
+        if (typeof value === 'string') {
+          setDateTimeValue(value);
+        } else if (Array.isArray(value)) {
+          setDateTimeValue(value[0]); // Assuming you take the first value if it's an array
+        }
+      });
+    }
+  }
+
+  startDateChanged(event: Event) {
+    const customEvent = event as CustomEvent;
+    const value = customEvent.detail.value;
+    if (typeof value === 'string') {
+      this.dateValue = value;
+      console.log('Start Date changed to:', value); // Print the new date value
+      this.startDateValue = value
+    } else if (Array.isArray(value)) {
+      this.dateValue = value[0]; // Assuming you take the first value if it's an array
+      console.log('Date changed to:', value[0]); // Print the new date value
+      this.startDateValue = value[0]
+    } else {
+      this.dateValue = ''; // Handle null or undefined
+      console.log('Date changed to an invalid value');
+    }
+  }
+
+  endDateChanged(event: Event) {
+    const customEvent = event as CustomEvent;
+    const value = customEvent.detail.value;
+    if (typeof value === 'string') {
+      this.dateValue = value;
+      console.log('End Date changed to:', value); // Print the new date value
+      this.endDateValue = value
+    } else if (Array.isArray(value)) {
+      this.dateValue = value[0]; // Assuming you take the first value if it's an array
+      console.log('Date changed to:', value[0]); // Print the new date value
+      this.endDateValue = value[0]
+    } else {
+      this.dateValue = ''; // Handle null or undefined
+      console.log('Date changed to an invalid value');
+    }
+  }
+  
+
+  selectDate(){
+    this.apiService.selectRangeDate(this.startDateValue, this.endDateValue).subscribe(
+      data => {
+        console.log('Data:', data);
+        this.data = data;
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle the error here
+    }
+    )
+  }
+
+  onChange(_date: Date){
+    console.log(this.dateValue)
   }
 
   loadData() {
@@ -65,3 +160,8 @@ export class HomePage implements OnInit{
   }*/
   
 }
+
+function dateChanged(event: Event | undefined, CustomEvent: { new <T>(type: string, eventInitDict?: CustomEventInit<T> | undefined): CustomEvent<T>; prototype: CustomEvent<any>; }) {
+  throw new Error('Function not implemented.');
+}
+
