@@ -37,9 +37,17 @@ export class HomePage implements OnInit{
 
     function setDateTimeValue(val: string) {
       if (val) {
-        const date = new Date(val);
-        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        const text = new Intl.DateTimeFormat('en', options).format(date);
+      const date = new Date(val);
+      const options: Intl.DateTimeFormatOptions = {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+      };
+        const text = date.toLocaleString('en-US', options).replace(',', '');
         datetimeValue.innerText = text;
         console.log('Selected date:', text); // Print the selected date
       } else {
@@ -66,37 +74,56 @@ export class HomePage implements OnInit{
     }
   }
 
-  startDateChanged(event: Event) {
+   startDateChanged(event: Event) {
     const customEvent = event as CustomEvent;
     const value = customEvent.detail.value;
-    if (typeof value === 'string') {
-      this.dateValue = value;
-      console.log('Start Date changed to:', value); // Print the new date value
-      this.startDateValue = value
-    } else if (Array.isArray(value)) {
-      this.dateValue = value[0]; // Assuming you take the first value if it's an array
-      console.log('Date changed to:', value[0]); // Print the new date value
-      this.startDateValue = value[0]
-    } else {
-      this.dateValue = ''; // Handle null or undefined
-      console.log('Date changed to an invalid value');
-    }
+    this.startDateValue = this.processDateChange(value);
+    this.updateDatetimeValue();
   }
 
   endDateChanged(event: Event) {
     const customEvent = event as CustomEvent;
     const value = customEvent.detail.value;
-    if (typeof value === 'string') {
-      this.dateValue = value;
-      console.log('End Date changed to:', value); // Print the new date value
-      this.endDateValue = value
-    } else if (Array.isArray(value)) {
-      this.dateValue = value[0]; // Assuming you take the first value if it's an array
-      console.log('Date changed to:', value[0]); // Print the new date value
-      this.endDateValue = value[0]
+    this.endDateValue = this.processDateChange(value);
+    this.updateDatetimeValue();
+  }
+
+  processDateChange(value: string | string[]): string {
+  if (typeof value === 'string') {
+    console.log('Date changed to:', value);
+    return value;
+  } else if (Array.isArray(value)) {
+    console.log('Date changed to:', value[0]);
+    return value[0];
+  } else {
+    console.log('Date changed to an invalid value');
+    return '';
+  }
+  }
+
+  formatDate(val: string | number | Date): string {
+    const date = new Date(val);
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZone: 'Europe/Rome'
+    };
+    return date.toLocaleString('it-IT', options).replace(',', '');
+  }
+
+    updateDatetimeValue() {
+    const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
+    if (this.startDateValue && this.endDateValue) {
+      const formattedStartDate = this.formatDate(this.startDateValue);
+      const formattedEndDate = this.formatDate(this.endDateValue);
+      datetimeValue.innerText = `Start: ${formattedStartDate}, End: ${formattedEndDate}`;
     } else {
-      this.dateValue = ''; // Handle null or undefined
-      console.log('Date changed to an invalid value');
+      datetimeValue.innerText = 'Invalid date';
     }
   }
   
