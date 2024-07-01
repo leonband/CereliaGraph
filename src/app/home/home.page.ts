@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, Input } from '@angular/core';
+import { Component, OnInit, inject, Input,  ViewChild, ElementRef } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
 import type { EChartsOption } from 'echarts';
 import { ChartModule } from '../chartTensione/chart.module'
@@ -16,7 +16,11 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, RouterModule, IonModal, IonDatetimeButton, CommonModule],
 })
 export class HomePage implements OnInit{
-[x: string]: any;
+  @ViewChild('datetimeValue', { static: true })
+  datetimeValue!: ElementRef;
+  @ViewChild('datetime', { static: true })
+  datetime!: IonDatetime;
+  [x: string]: any;
   data: any
   _date = new Date().toISOString();
   dateValue: string = '';
