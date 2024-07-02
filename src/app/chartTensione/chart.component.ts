@@ -20,10 +20,10 @@ export class ChartComponent implements OnInit {
   
 
   ngOnInit(){
-    this.loadData();
+    //this.loadData();
   }
 
-  loadData() {
+  /*loadData() {
   this.apiService.getdata().subscribe(
     data => {
       console.log('Data:', data);
@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit {
       // Handle the error here
     }
   );
-  }
+  }*/
 
   configureChart(chartData: any) {
     const chartConfigs = {

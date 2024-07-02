@@ -175,7 +175,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-card id="KW">
+          <ion-card id="KW" *ngIf="data">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>
@@ -192,7 +192,7 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <ion-card>
+          <ion-card *ngIf="data">
           <ion-card-header>
             <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
             <ion-card-subtitle>
@@ -210,7 +210,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-card>
+          <ion-card *ngIf="data">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
               <ion-card-subtitle>
@@ -227,7 +227,7 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <ion-card>
+          <ion-card *ngIf="data">
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>
@@ -238,7 +238,7 @@
           
             <ion-card-content>
               <ion-item>
-                <chart-container *ngIf="data"></chart-container>
+                <chart-container *ngIf="data" events="events1"></chart-container>
               </ion-item>
             </ion-card-content>
           </ion-card>
