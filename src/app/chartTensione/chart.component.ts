@@ -1,7 +1,16 @@
+import { SharedService } from './../shared.service';
 /* eslint-disable @angular-eslint/component-selector */
 import { Tension } from '../services/tensione.service';
 // chart.component.ts
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject, Input,  ViewChild, ElementRef } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
+import type { EChartsOption } from 'echarts';
+import { ChartModule } from '../chartTensione/chart.module'
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "chart-container",
@@ -11,19 +20,31 @@ import { Component, OnInit } from "@angular/core";
 
 
 export class ChartComponent implements OnInit {
-  data: any = {};
+
   dataSource!: object;
+  private dataSubscription!: Subscription;
 
-  constructor(private apiService: Tension) {
+  constructor(private sharedService: SharedService) {
 
+  }
+
+ ngOnInit() {
+    this.dataSubscription = this.sharedService.getDataObservable().subscribe(data => {
+      this.configureChart(data);
+    });
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
   }
   
+/*onChange(){
+  this.configureChart(this.data);
+}
 
-  ngOnInit(){
-    //this.loadData();
-  }
+   
 
-  /*loadData() {
+ loadData() {
   this.apiService.getdata().subscribe(
     data => {
       console.log('Data:', data);

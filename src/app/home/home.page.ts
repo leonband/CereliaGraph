@@ -1,3 +1,5 @@
+import { SharedService } from './../shared.service';
+import { ChartComponent } from './../chartTensione/chart.component';
 import { Component, OnInit, inject, Input,  ViewChild, ElementRef } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
 import type { EChartsOption } from 'echarts';
@@ -6,6 +8,7 @@ import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { FusionChartsModule } from 'angular-fusioncharts';
 
 
 @Component({
@@ -27,10 +30,11 @@ export class HomePage implements OnInit{
   startDateValue: string = '';
   endDateValue: string = '';
 
-  constructor(private apiService: Tension) {}
+  constructor(private apiService: Tension, private SharedService: SharedService) {}
 
   ngOnInit(){
     //this.loadData();
+    this.data = this.SharedService.getData();
 
     const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
     const datetime = document.querySelector('#datetime') as HTMLIonDatetimeElement;
@@ -133,6 +137,7 @@ export class HomePage implements OnInit{
       (data) => {
         console.log('Data:', data);
         this.data = data;
+        this.SharedService.setData(this.data)
       },
       error => {
         console.error('Error:', error);
@@ -187,6 +192,7 @@ export class HomePage implements OnInit{
   }*/
   
 }
+
 
 function dateChanged(event: Event | undefined, CustomEvent: { new <T>(type: string, eventInitDict?: CustomEventInit<T> | undefined): CustomEvent<T>; prototype: CustomEvent<any>; }) {
   throw new Error('Function not implemented.');
