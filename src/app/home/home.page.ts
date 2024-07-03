@@ -78,6 +78,10 @@ export class HomePage implements OnInit{
     }
   }
 
+  existData(){
+    
+  }
+
   startDateChanged(event: Event) {
     const customEvent = event as CustomEvent;
     const value = customEvent.detail.value;

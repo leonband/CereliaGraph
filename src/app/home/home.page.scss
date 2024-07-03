@@ -8,6 +8,12 @@
   transform: translateY(-50%);
 }
 
+
+ion-header .logo-full {
+  width: 250px;
+  height: 125px;
+}
+
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -29,6 +35,11 @@
 ion-grid ion-row,
 ion-col{
   padding: 1px;
+}
+
+ion-card{
+  width: 100%;
+  margin: 10px;
 }
 
 #KW {
