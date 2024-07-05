@@ -5,14 +5,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "chart-container",
-  templateUrl: "chart.component.html",
-  styleUrls: ["chart.component.scss"]
+  selector: 'app-chart-corrente',
+  templateUrl: './chart-corrente.component.html',
+  styleUrls: ['./chart-corrente.component.scss'],
 })
-
-
-export class ChartComponent implements OnInit {
-
+export class ChartCorrenteComponent  implements OnInit {
   dataSource!: object;
   private dataSubscription!: Subscription;
 
@@ -30,13 +27,34 @@ export class ChartComponent implements OnInit {
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
   }
+  
+/*onChange(){
+  this.configureChart(this.data);
+}
+
+   
+
+ loadData() {
+  this.apiService.getdata().subscribe(
+    data => {
+      console.log('Data:', data);
+      this.configureChart(data);
+      console.log(data)
+      // Handle the data here
+    },
+    error => {
+      console.error('Error:', error);
+      // Handle the error here
+    }
+  );
+  }*/
 
   configureChart(chartData: any) {
     const chartConfigs = {
-      caption: "Tensione ( V )",
+      caption: "Corrente ( A )",
       subCaption: "",
       xAxisName: "Tempo",
-      yAxisName: "Volt Istantanei",
+      yAxisName: "Ampere Istantanei",
       numberSuffix: "",
       exportEnabled: "1",
       theme: "fusion",
@@ -44,7 +62,7 @@ export class ChartComponent implements OnInit {
 
    this.dataSource = {
       chart: chartConfigs,
-      data: chartData,
+      data: chartData, // Assuming chartData is in the format required by FusionCharts
     };
     
 }

@@ -1,23 +1,25 @@
 import { SharedService } from './../shared.service';
-import { ChartComponent } from './../chartTensione/chart.component';
-import { Component, OnInit, inject, Input,  ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
-import type { EChartsOption } from 'echarts';
 import { ChartModule } from '../chartTensione/chart.module'
+import { ChartCorrenteModule } from '../chart-corrente/chart-corrente.module';
+import { ChartKiloWattModule } from '../chart-kilo-watt/chart-kilo-watt.module';
+import { ChartkiloVoltAmpereModule } from './../chart-kilo-volt-ampere/chart-kilo-volt-ampere.module';
+import { ChartKiloVoltAmpereReactModule } from '../chart-kilo-volt-ampere-react/chart-kilo-volt-ampere-react.module';
+import { ChartCosPhiModule } from '../chart-cos-phi/chart-cos-phi.module';
 import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { FusionChartsModule } from 'angular-fusioncharts';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, RouterModule, IonModal, IonDatetimeButton, CommonModule],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, ChartCorrenteModule, ChartKiloWattModule, ChartkiloVoltAmpereModule, ChartKiloVoltAmpereReactModule, ChartCosPhiModule, RouterModule, IonModal, IonDatetimeButton, CommonModule, ]
 })
+
 export class HomePage implements OnInit{
   @ViewChild('datetimeValue', { static: true })
   datetimeValue!: ElementRef;
@@ -25,6 +27,7 @@ export class HomePage implements OnInit{
   datetime!: IonDatetime;
   [x: string]: any;
   data: any
+  data2: any
   _date = new Date().toISOString();
   dateValue: string = '';
   startDateValue: string = '';
@@ -35,6 +38,7 @@ export class HomePage implements OnInit{
   ngOnInit(){
     //this.loadData();
     this.data = this.SharedService.getData();
+    this.data2 = this.SharedService.getData();
 
     const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
     const datetime = document.querySelector('#datetime') as HTMLIonDatetimeElement;
@@ -141,6 +145,7 @@ export class HomePage implements OnInit{
       (data) => {
         console.log('Data:', data);
         this.data = data;
+        this.data2 = data;
         this.SharedService.setData(this.data)
       },
       error => {
@@ -184,16 +189,6 @@ export class HomePage implements OnInit{
   };
 
   checkedItems = [];
-
-  /*onChange(item) {
-    if (this.checkedItems.includes(item)) {
-      this.checkedItems = this.checkedItems.filter((value: any) => value != item);
-      console.log('ciao ciao');
-    } else {
-      this.checkedItems.push(item);
-      console.log('Bau ciao');
-    }
-  }*/
   
 }
 

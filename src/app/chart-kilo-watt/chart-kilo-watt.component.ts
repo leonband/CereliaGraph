@@ -5,13 +5,13 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "chart-container",
-  templateUrl: "chart.component.html",
-  styleUrls: ["chart.component.scss"]
+  selector: "app-chart-kilo-watt",
+  templateUrl: "./chart-kilo-watt.component.html",
+  styleUrls: ["./chart-kilo-watt.component.scss"]
 })
 
 
-export class ChartComponent implements OnInit {
+export class ChartKiloWattComponent implements OnInit {
 
   dataSource!: object;
   private dataSubscription!: Subscription;
@@ -33,10 +33,10 @@ export class ChartComponent implements OnInit {
 
   configureChart(chartData: any) {
     const chartConfigs = {
-      caption: "Tensione ( V )",
+      caption: "Potenza Attiva ( kW )",
       subCaption: "",
       xAxisName: "Tempo",
-      yAxisName: "Volt Istantanei",
+      yAxisName: "KiloWatt Istantanei",
       numberSuffix: "",
       exportEnabled: "1",
       theme: "fusion",

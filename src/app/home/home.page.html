@@ -34,7 +34,7 @@
                               <ion-datetime-button datetime="date1"></ion-datetime-button>
                                 <ion-modal [keepContentsMounted]="true">
                                   <ng-template>
-                                    <ion-datetime presentation="date" isDateEnabled="existData" id="date1" (ionChange)="startDateChanged($event)"></ion-datetime>
+                                    <ion-datetime presentation="date" isDateEnabled="existData" yearValues="2021, 2022" id="date1" (ionChange)="startDateChanged($event)"></ion-datetime>
                                     <div id="startDatetimeValue"></div>
                                   </ng-template>
                                 </ion-modal>
@@ -51,7 +51,7 @@
                               <ion-datetime-button datetime="date2"></ion-datetime-button>
                               <ion-modal [keepContentsMounted]="true">
                                 <ng-template>
-                                  <ion-datetime presentation="date" id="date2" (ionChange)="endDateChanged($event)"></ion-datetime>
+                                  <ion-datetime presentation="date" id="date2" yearValues="2021, 2022" (ionChange)="endDateChanged($event)"></ion-datetime>
                                   <div id="endDatetimeValue"></div>
                                 </ng-template>
                               </ion-modal>
@@ -160,13 +160,13 @@
                   <ion-label> TENSIONE </ion-label>
                 </ion-item-divider>
                 <ion-item>
-                    <chart-container data="data"></chart-container>
+                    <chart-container *ngIf="data"></chart-container>
                 </ion-item>
                 <ion-item-divider color="light">
                   <ion-label> CORRENTE </ion-label>
                 </ion-item-divider>
                 <ion-item>
-                  <chart-container *ngIf="data"></chart-container>
+                  <app-chart-corrente *ngIf="data"></app-chart-corrente>
                 </ion-item>
             </ion-list>
             </ion-card-content>
@@ -186,7 +186,7 @@
           
             <ion-card-content>
               <ion-item>
-                <chart-container *ngIf="data"></chart-container>
+                <app-chart-kilo-watt *ngIf="data"></app-chart-kilo-watt>
               </ion-item>
             </ion-card-content>
           </ion-card>
@@ -202,7 +202,7 @@
         
           <ion-card-content>
             <ion-item>
-              <chart-container *ngIf="data"></chart-container>
+              <app-chart-kilo-volt-ampere-react *ngIf="data"></app-chart-kilo-volt-ampere-react>
             </ion-item>
           </ion-card-content>
         </ion-card>
@@ -220,7 +220,7 @@
           
             <ion-card-content>
               <ion-item>
-                <chart-container *ngIf="data"></chart-container>
+                <app-chart-kilo-volt-ampere *ngIf="data"></app-chart-kilo-volt-ampere>
               </ion-item>
             </ion-card-content>
           </ion-card>
@@ -232,14 +232,14 @@
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>
-                Grafico che mostra la ampere del periodo e degli apparecchi
+                Grafico che mostra il fattore di potenza del periodo e degli apparecchi
                 selezionati
               </ion-card-subtitle>
             </ion-card-header>
           
             <ion-card-content>
               <ion-item>
-                <chart-container *ngIf="data" events="events1"></chart-container>
+                <app-chart-cos-phi *ngIf="data"></app-chart-cos-phi>
               </ion-item>
             </ion-card-content>
           </ion-card>

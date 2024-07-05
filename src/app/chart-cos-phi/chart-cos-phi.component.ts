@@ -5,15 +5,12 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "chart-container",
-  templateUrl: "chart.component.html",
-  styleUrls: ["chart.component.scss"]
+  selector: 'app-chart-cos-phi',
+  templateUrl: './chart-cos-phi.component.html',
+  styleUrls: ['./chart-cos-phi.component.scss'],
 })
-
-
-export class ChartComponent implements OnInit {
-
-  dataSource!: object;
+export class ChartCosPhiComponent  implements OnInit {
+dataSource!: object;
   private dataSubscription!: Subscription;
 
   constructor(private sharedService: SharedService) {
@@ -33,10 +30,10 @@ export class ChartComponent implements OnInit {
 
   configureChart(chartData: any) {
     const chartConfigs = {
-      caption: "Tensione ( V )",
+      caption: "Fattore di Potenza ( φ )",
       subCaption: "",
       xAxisName: "Tempo",
-      yAxisName: "Volt Istantanei",
+      yAxisName: "φ Istantaneo",
       numberSuffix: "",
       exportEnabled: "1",
       theme: "fusion",
@@ -49,4 +46,3 @@ export class ChartComponent implements OnInit {
     
 }
 }
-
