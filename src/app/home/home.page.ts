@@ -1,6 +1,7 @@
 import { SharedService } from './../shared.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime, IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime,
+         IonImg, IonList, IonItem, IonCheckbox, IonButton, IonItemDivider, IonLabel, IonModal, IonDatetimeButton } from '@ionic/angular/standalone';
 import { ChartModule } from '../chartTensione/chart.module'
 import { ChartCorrenteModule } from '../chart-corrente/chart-corrente.module';
 import { ChartKiloWattModule } from '../chart-kilo-watt/chart-kilo-watt.module';
@@ -17,7 +18,9 @@ import { CommonModule } from '@angular/common';
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
     standalone: true,
-    imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, ChartCorrenteModule, ChartKiloWattModule, ChartkiloVoltAmpereModule, ChartKiloVoltAmpereReactModule, ChartCosPhiModule, RouterModule, IonModal, IonDatetimeButton, CommonModule, ]
+    imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
+              IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, ChartCorrenteModule, ChartKiloWattModule, ChartkiloVoltAmpereModule,
+              ChartKiloVoltAmpereReactModule, ChartCosPhiModule, RouterModule, IonModal, IonDatetimeButton, CommonModule, ]
 })
 
 export class HomePage implements OnInit{
@@ -38,7 +41,6 @@ export class HomePage implements OnInit{
   ngOnInit(){
     //this.loadData();
     this.data = this.SharedService.getData();
-    this.data2 = this.SharedService.getData();
 
     const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
     const datetime = document.querySelector('#datetime') as HTMLIonDatetimeElement;
