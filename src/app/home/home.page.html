@@ -10,6 +10,7 @@
 
   <div>
     <ion-grid class="grid">
+                                
 
 
       <ion-row>
@@ -63,7 +64,6 @@
                             <ion-button (click)="selectDate()">SELEZIONA PERIODO</ion-button>
                           </ion-col>
                         </ion-row>
-
                         </ion-row>
                       </ion-grid>
                   </ion-col>
@@ -75,20 +75,39 @@
                       <ion-row>
                         <ion-col>
                           <ion-list>
+                            <div>
                             <ion-item>
-                              <ion-checkbox>
-                                KW
+                              <ion-checkbox >
+                                KW ( Potenza Attiva istantanea )
+                                <ion-button id="KW-trigger"><ion-icon></ion-icon></ion-button>
                               </ion-checkbox>
+                              <ion-popover trigger="KW-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Potenza Attiva istantanea</ion-content>
+                                </ng-template>
+                              </ion-popover>
+                            </ion-item>
+                            
+                            </div>
+                            <ion-item>
+                              <ion-checkbox id="KVA-trigger">
+                                KVA ( Potenza Apparente istantanea )
+                              </ion-checkbox>
+                                <ion-popover trigger="KVA-trigger" triggerAction="hover">
+                                  <ng-template>
+                                    <ion-content class="ion-padding">Potenza apparente istantanea</ion-content>
+                                  </ng-template>
+                                  </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox>
-                                P
+                              <ion-checkbox id="KVAr-trigger">
+                                KVAr ( Potenza Reattiva istantanea )
                               </ion-checkbox>
-                            </ion-item>
-                            <ion-item>
-                              <ion-checkbox>
-                                KVAr
-                              </ion-checkbox>
+                              <ion-popover trigger="KVAr-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Potenza Reattiva istantanea</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                           </ion-list>
                         </ion-col>
@@ -96,12 +115,13 @@
                           <ion-list>
                             <ion-item>
                               <ion-checkbox>
-                                KVA
+                                φ ( Coseno di Phi istantaneo )
+                                
                               </ion-checkbox>
                             </ion-item>
                             <ion-item>
                               <ion-checkbox>
-                                A
+                                A ( Corrente istantanea )
                               </ion-checkbox>
                             </ion-item>
                           </ion-list>
@@ -114,26 +134,26 @@
                         <ion-col>
                           <ion-list>
                             <ion-item>
-                              <ion-checkbox> TR1</ion-checkbox>
+                              <ion-checkbox> TRASFORMATORE 1</ion-checkbox>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> TR2</ion-checkbox>
+                              <ion-checkbox> TRASFORMATORE 2</ion-checkbox>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> FV</ion-checkbox>
+                              <ion-checkbox> FOTOVOLTAICO </ion-checkbox>
                             </ion-item>
                           </ion-list>
                         </ion-col>
                         <ion-col>
                           <ion-list>
                             <ion-item>
-                              <ion-checkbox> BLINDO 1</ion-checkbox>
+                              <ion-checkbox> BS1 1250A ( chiller Gaudino )</ion-checkbox>                              
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> BLINDO 2</ion-checkbox>
+                              <ion-checkbox> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> BLINDO 3</ion-checkbox>
+                              <ion-checkbox> B9 1600A ( UTA ) </ion-checkbox>
                             </ion-item>
                           </ion-list>
                         </ion-col>
@@ -149,7 +169,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data">
+          <ion-card *ngIf="data2">
             <ion-card-header>
               <ion-card-title>GRAFICI CORRENTE ( A ) E TENSIONE ( V )</ion-card-title>
               <ion-card-subtitle>Grafici che mostrano la corrente e la tenasione del periodo e degli apparecchi selezionati</ion-card-subtitle>
@@ -175,7 +195,7 @@
       </ion-row>
 
       <ion-row>
-          <ion-card id="KW" *ngIf="data">
+          <ion-card *ngIf="data">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>
@@ -192,7 +212,7 @@
           </ion-card>
       </ion-row>
       <ion-row>
-          <ion-card *ngIf="data">
+          <ion-card *ngIf="data2">
           <ion-card-header>
             <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
             <ion-card-subtitle>
@@ -209,7 +229,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data">
+          <ion-card *ngIf="data2">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
               <ion-card-subtitle>
@@ -228,7 +248,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data">
+          <ion-card *ngIf="data2">
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>
