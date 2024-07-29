@@ -42,6 +42,7 @@ export class HomePage implements OnInit{
   potenzaApp: boolean = false;
   cosPhi: boolean = false;
   potenzaAtt: boolean = false;
+  isButtonEnabled: boolean = false;
 
 
   constructor(private apiService: Tension, private SharedService: SharedService) {}
@@ -94,6 +95,10 @@ export class HomePage implements OnInit{
 
   existData(){
     
+  }
+
+  updateButtonState() {
+    this.isButtonEnabled = this.corrente || this.tensione || this.cosPhi || this.potenzaApp || this.potenzaAtt || this.potenzaReatt;
   }
 
   startDateChanged(event: Event) {
@@ -151,6 +156,9 @@ export class HomePage implements OnInit{
   
 
   selectDate(){
+    if( this.corrente == true){
+      console.log("ciao")
+    }
     this.apiService.selectRangeDate(this.startDateValue, this.endDateValue).subscribe(
       (data) => {
         console.log('Data:', data);
