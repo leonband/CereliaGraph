@@ -163,10 +163,10 @@
                           </ion-list>
                         </ion-col>
                       </ion-row>
-                      <ion-item-divider color="light">
+                      <ion-item-divider *ngIf="data2" color="light">
                         <ion-label> QUADRI </ion-label>
                       </ion-item-divider>
-                      <ion-row>
+                      <ion-row *ngIf="data2">
                         <ion-col>
                           <ion-list>
 
