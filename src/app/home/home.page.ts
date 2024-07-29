@@ -11,6 +11,7 @@ import { ChartCosPhiModule } from '../chart-cos-phi/chart-cos-phi.module';
 import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 
 @Component({
@@ -20,7 +21,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [IonLabel, IonItemDivider, IonButton, IonCheckbox, IonItem, IonList, IonImg, IonDatetime, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
               IonCard, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ChartModule, ChartCorrenteModule, ChartKiloWattModule, ChartkiloVoltAmpereModule,
-              ChartKiloVoltAmpereReactModule, ChartCosPhiModule, RouterModule, IonModal, IonDatetimeButton, CommonModule, IonIcon, IonPopover ]
+              ChartKiloVoltAmpereReactModule, ChartCosPhiModule, RouterModule, IonModal, IonDatetimeButton, CommonModule, IonIcon, IonPopover, FormsModule ]
 })
 
 export class HomePage implements OnInit{
@@ -35,6 +36,13 @@ export class HomePage implements OnInit{
   dateValue: string = '';
   startDateValue: string = '';
   endDateValue: string = '';
+  corrente: boolean = false;
+  tensione: boolean = false;
+  potenzaReatt: boolean = false;
+  potenzaApp: boolean = false;
+  cosPhi: boolean = false;
+  potenzaAtt: boolean = false;
+
 
   constructor(private apiService: Tension, private SharedService: SharedService) {}
 

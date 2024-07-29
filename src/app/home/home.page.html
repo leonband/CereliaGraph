@@ -12,7 +12,7 @@
     <ion-grid class="grid">
                                 
 
-
+      <!-- -->
       <ion-row>
         <ion-col>
           <ion-card>
@@ -59,12 +59,12 @@
                             </ion-card-content>
                           </ion-card>
                         </ion-col>
-                        <ion-row>
-                          <ion-col>
-                            <ion-button (click)="selectDate()">SELEZIONA PERIODO</ion-button>
-                          </ion-col>
                         </ion-row>
-                        </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button (click)="selectDate()">SELEZIONA PERIODO</ion-button>
+                            </ion-col>
+                          </ion-row>
                       </ion-grid>
                   </ion-col>
                   <ion-col>
@@ -75,12 +75,13 @@
                       <ion-row>
                         <ion-col>
                           <ion-list>
-                            <div>
+
+                            <!-- Checkbox Potenza Attiva -->
                             <ion-item>
-                              <ion-checkbox >
+                              <ion-checkbox [(ngModel)]="potenzaAtt">
                                 KW ( Potenza Attiva istantanea )
-                                <ion-button id="KW-trigger"><ion-icon></ion-icon></ion-button>
                               </ion-checkbox>
+                              <ion-button shape="round" id="KW-trigger">INFO</ion-button>
                               <ion-popover trigger="KW-trigger" triggerAction="click">
                                 <ng-template>
                                   <ion-content class="ion-padding">Potenza Attiva istantanea</ion-content>
@@ -88,42 +89,77 @@
                               </ion-popover>
                             </ion-item>
                             
-                            </div>
+
+                            <!-- Checkbox Potenza Apparente-->
                             <ion-item>
-                              <ion-checkbox id="KVA-trigger">
+                              <ion-checkbox [(ngModel)]="potenzaReatt">
                                 KVA ( Potenza Apparente istantanea )
                               </ion-checkbox>
-                                <ion-popover trigger="KVA-trigger" triggerAction="hover">
-                                  <ng-template>
-                                    <ion-content class="ion-padding">Potenza apparente istantanea</ion-content>
-                                  </ng-template>
-                                  </ion-popover>
+                              <ion-button shape="round" id="KVA-trigger">INFO</ion-button>
+                              <ion-popover trigger="KVA-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Potenza Apparente istantanea</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
+
+                            <!-- Checkbox Potenza Reattiva-->
                             <ion-item>
-                              <ion-checkbox id="KVAr-trigger">
+                              <ion-checkbox [(ngModel)]="potenzaReatt">
                                 KVAr ( Potenza Reattiva istantanea )
                               </ion-checkbox>
+                              <ion-button shape="round" id="KVAr-trigger">INFO</ion-button>
                               <ion-popover trigger="KVAr-trigger" triggerAction="click">
                                 <ng-template>
                                   <ion-content class="ion-padding">Potenza Reattiva istantanea</ion-content>
                                 </ng-template>
                               </ion-popover>
                             </ion-item>
+
                           </ion-list>
                         </ion-col>
                         <ion-col>
                           <ion-list>
+
+                            <!-- Checkbox CosPhi-->
                             <ion-item>
-                              <ion-checkbox>
+                              <ion-checkbox [(ngModel)]="cosPhi">
                                 φ ( Coseno di Phi istantaneo )
-                                
                               </ion-checkbox>
+                              <ion-button shape="round" id="COS-trigger">INFO</ion-button>
+                              <ion-popover trigger="COS-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Coseno di φ istantaneo</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
+                            
+                            <!-- Checkbox Corrente-->
                             <ion-item>
-                              <ion-checkbox>
+                              <ion-checkbox [(ngModel)]="corrente">
                                 A ( Corrente istantanea )
                               </ion-checkbox>
+                              <ion-button shape="round" id="A-trigger">INFO</ion-button>
+                              <ion-popover trigger="A-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Corrente istantanea</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
+
+                            <!-- Checkbox Tensione-->
+                            <ion-item>
+                              <ion-checkbox [(ngModel)]="tensione">
+                                V ( Tensione istantanea )
+                              </ion-checkbox>
+                              <ion-button shape="round" id="V-trigger">INFO</ion-button>
+                              <ion-popover trigger="V-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">Tensione istantanea</ion-content>
+                                </ng-template>
+                              </ion-popover>
+                            </ion-item>
+
                           </ion-list>
                         </ion-col>
                       </ion-row>
@@ -133,27 +169,66 @@
                       <ion-row>
                         <ion-col>
                           <ion-list>
+
+                            <!-- Trasformatore 1 -->
                             <ion-item>
                               <ion-checkbox> TRASFORMATORE 1</ion-checkbox>
+                              <ion-button shape="round" id="TR1-trigger">INFO</ion-button>
+                              <ion-popover trigger="TR1-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">TRASFORMATORE 1</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
+
                             <ion-item>
                               <ion-checkbox> TRASFORMATORE 2</ion-checkbox>
+                              <ion-button shape="round" id="TR2-trigger">INFO</ion-button>
+                              <ion-popover trigger="TR2-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">TRASFORMATORE 2</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                             <ion-item>
                               <ion-checkbox> FOTOVOLTAICO </ion-checkbox>
+                              <ion-button shape="round" id="FV-trigger">INFO</ion-button>
+                              <ion-popover trigger="FV-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">FOTOVOLTAICO</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                           </ion-list>
                         </ion-col>
                         <ion-col>
                           <ion-list>
                             <ion-item>
-                              <ion-checkbox> BS1 1250A ( chiller Gaudino )</ion-checkbox>                              
+                              <ion-checkbox> BS1 1250A ( chiller Gaudino )</ion-checkbox>
+                              <ion-button shape="round" id="BS1-trigger">INFO</ion-button>
+                              <ion-popover trigger="BS1-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">BLINDO 1 DA 1250A </ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                             <ion-item>
                               <ion-checkbox> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
+                              <ion-button shape="round" id="BS2-trigger">INFO</ion-button>
+                              <ion-popover trigger="BS2-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">BLINDO 2 DA 1250A</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                             <ion-item>
                               <ion-checkbox> B9 1600A ( UTA ) </ion-checkbox>
+                              <ion-button shape="round" id="B9-trigger">INFO</ion-button>
+                              <ion-popover trigger="B9-trigger" triggerAction="click">
+                                <ng-template>
+                                  <ion-content class="ion-padding">BLINDO DA 1600A</ion-content>
+                                </ng-template>
+                              </ion-popover>
                             </ion-item>
                           </ion-list>
                         </ion-col>
@@ -167,35 +242,42 @@
         </ion-col>
       </ion-row>
 
+      <!-- Grafici Tensione e Corrente -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data2">
+
+          <ion-card *ngIf="data && (corrente || tensione)">
             <ion-card-header>
               <ion-card-title>GRAFICI CORRENTE ( A ) E TENSIONE ( V )</ion-card-title>
               <ion-card-subtitle>Grafici che mostrano la corrente e la tenasione del periodo e degli apparecchi selezionati</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
               <ion-list>
-                <ion-item-divider color="light">
-                  <ion-label> TENSIONE </ion-label>
-                </ion-item-divider>
-                <ion-item>
-                    <chart-container *ngIf="data"></chart-container>
+                
+                <ion-item *ngIf="tensione">
+                    <ion-item-divider color="light">
+                      <ion-label> TENSIONE </ion-label>
+                    </ion-item-divider>
+                    <chart-container ></chart-container>
                 </ion-item>
-                <ion-item-divider color="light">
-                  <ion-label> CORRENTE </ion-label>
-                </ion-item-divider>
-                <ion-item>
-                  <app-chart-corrente *ngIf="data"></app-chart-corrente>
+
+                
+                <ion-item *ngIf="corrente">
+                  <ion-item-divider color="light">
+                    <ion-label> CORRENTE </ion-label>
+                  </ion-item-divider>
+                  <app-chart-corrente></app-chart-corrente>
                 </ion-item>
+
             </ion-list>
             </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
 
+      <!-- Grafico Potenza Attiva -->
       <ion-row>
-          <ion-card *ngIf="data">
+          <ion-card *ngIf="data && potenzaAtt">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>
@@ -211,8 +293,10 @@
             </ion-card-content>
           </ion-card>
       </ion-row>
+
+      <!-- Grafico Potenza Reattiva -->
       <ion-row>
-          <ion-card *ngIf="data2">
+          <ion-card *ngIf="data && potenzaReatt">
           <ion-card-header>
             <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
             <ion-card-subtitle>
@@ -227,9 +311,11 @@
           </ion-card-content>
         </ion-card>
       </ion-row>
+
+      <!-- Grafico Potenza Apparente -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data2">
+          <ion-card *ngIf="data && potenzaApp">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
               <ion-card-subtitle>
@@ -246,9 +332,11 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
+      <!-- Grafico CosPhi -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data2">
+          <ion-card *ngIf="data && cosPhi">
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>
@@ -265,6 +353,7 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
     </ion-grid>
   </div>
 </ion-content>
