@@ -12,6 +12,7 @@ import { Tension } from '../services/tensione.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { HealthCheckService } from '../healt-check.service'
 
 
 @Component({
@@ -50,6 +51,9 @@ export class HomePage implements OnInit{
   ngOnInit(){
     //this.loadData();
     this.data = this.SharedService.getData();
+    this['healthCheckService'].startHealthCheck().subscribe((response: any) => {
+      console.log('Health check response:', response);
+    });
 
     const datetimeValue = document.querySelector('#datetimeValue') as HTMLElement;
     const datetime = document.querySelector('#datetime') as HTMLIonDatetimeElement;

@@ -35,7 +35,7 @@
                               <ion-datetime-button [disabled]="!isButtonEnabled" datetime="date1"></ion-datetime-button>
                                 <ion-modal [keepContentsMounted]="true">
                                   <ng-template>
-                                    <ion-datetime presentation="date" isDateEnabled="existData" yearValues="2021, 2022" id="date1" (ionChange)="startDateChanged($event)"></ion-datetime>
+                                    <ion-datetime presentation="date" isDateEnabled="existData" yearValues="2021, 2022, 2024" id="date1" (ionChange)="startDateChanged($event)"></ion-datetime>
                                     <div id="startDatetimeValue"></div>
                                   </ng-template>
                                 </ion-modal>
@@ -52,7 +52,7 @@
                               <ion-datetime-button [disabled]="!isButtonEnabled" datetime="date2"></ion-datetime-button>
                               <ion-modal [keepContentsMounted]="true">
                                 <ng-template>
-                                  <ion-datetime presentation="date" id="date2" yearValues="2021, 2022" (ionChange)="endDateChanged($event)"></ion-datetime>
+                                  <ion-datetime presentation="date" id="date2" yearValues="2021, 2022, " (ionChange)="endDateChanged($event)"></ion-datetime>
                                   <div id="endDatetimeValue"></div>
                                 </ng-template>
                               </ion-modal>
