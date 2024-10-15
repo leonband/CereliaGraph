@@ -52,7 +52,7 @@
                               <ion-datetime-button [disabled]="!isButtonEnabled" datetime="date2"></ion-datetime-button>
                               <ion-modal [keepContentsMounted]="true">
                                 <ng-template>
-                                  <ion-datetime presentation="date" id="date2" yearValues="2021, 2022, " (ionChange)="endDateChanged($event)"></ion-datetime>
+                                  <ion-datetime presentation="date" id="date2" yearValues="2021, 2022, 2024 " (ionChange)="endDateChanged($event)"></ion-datetime>
                                   <div id="endDatetimeValue"></div>
                                 </ng-template>
                               </ion-modal>
@@ -163,16 +163,16 @@
                           </ion-list>
                         </ion-col>
                       </ion-row>
-                      <ion-item-divider *ngIf="data2" color="light">
+                      <ion-item-divider  color="light">
                         <ion-label> QUADRI </ion-label>
                       </ion-item-divider>
-                      <ion-row *ngIf="data2">
+                      <ion-row >
                         <ion-col>
                           <ion-list>
 
                             <!-- Trasformatore 1 -->
                             <ion-item>
-                              <ion-checkbox> TRASFORMATORE 1</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="TR1" (ionChange)="updateButtonState()"> TRASFORMATORE 1</ion-checkbox>
                               <ion-button shape="round" id="TR1-trigger">INFO</ion-button>
                               <ion-popover trigger="TR1-trigger" triggerAction="click">
                                 <ng-template>
@@ -182,7 +182,7 @@
                             </ion-item>
 
                             <ion-item>
-                              <ion-checkbox> TRASFORMATORE 2</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="TR2" (ionChange)="updateButtonState()"> TRASFORMATORE 2</ion-checkbox>
                               <ion-button shape="round" id="TR2-trigger">INFO</ion-button>
                               <ion-popover trigger="TR2-trigger" triggerAction="click">
                                 <ng-template>
@@ -191,7 +191,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> FOTOVOLTAICO </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="FV" (ionChange)="updateButtonState()"> FOTOVOLTAICO </ion-checkbox>
                               <ion-button shape="round" id="FV-trigger">INFO</ion-button>
                               <ion-popover trigger="FV-trigger" triggerAction="click">
                                 <ng-template>
@@ -204,7 +204,7 @@
                         <ion-col>
                           <ion-list>
                             <ion-item>
-                              <ion-checkbox> BS1 1250A ( chiller Gaudino )</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="BS1" (ionChange)="updateButtonState()"> BS1 1250A ( chiller Gaudino )</ion-checkbox>
                               <ion-button shape="round" id="BS1-trigger">INFO</ion-button>
                               <ion-popover trigger="BS1-trigger" triggerAction="click">
                                 <ng-template>
@@ -213,7 +213,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="BS2" (ionChange)="updateButtonState()"> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
                               <ion-button shape="round" id="BS2-trigger">INFO</ion-button>
                               <ion-popover trigger="BS2-trigger" triggerAction="click">
                                 <ng-template>
@@ -222,7 +222,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox> B9 1600A ( UTA ) </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="B9" (ionChange)="updateButtonState()"> B9 1600A ( UTA ) </ion-checkbox>
                               <ion-button shape="round" id="B9-trigger">INFO</ion-button>
                               <ion-popover trigger="B9-trigger" triggerAction="click">
                                 <ng-template>
