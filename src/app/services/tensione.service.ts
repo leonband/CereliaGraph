@@ -18,8 +18,9 @@ export class Tension {
         return this.http.get<ApiResult>(`${BASE_URL}/api/porzionatrice_stop_cycle`);
     }
 
-    selectRangeDate(startDate: string, endDate:string): Observable<ApiResult>{
+    selectRangeDate(transformer: string, startDate: string, endDate:string): Observable<ApiResult>{
       let params = new HttpParams();
+      params = params.append('transformer', transformer);
       params = params.append('startDate', startDate);
       params = params.append('endDate', endDate);
       return this.http.get<ApiResult>(`${BASE_URL}/api/range_date`, {params: params});
