@@ -31,25 +31,31 @@ export class HomePage implements OnInit{
   @ViewChild('datetime', { static: true })
   datetime!: IonDatetime;
   [x: string]: any;
-  data: any
+
   data2: any
   _date = new Date().toISOString();
   dateValue: string = '';
+
+
+  isButtonEnabled: boolean = false;
   startDateValue: string = '';
   endDateValue: string = '';
-  corrente: boolean = false;
-  tensione: boolean = false;
-  potenzaReatt: boolean = false;
-  potenzaApp: boolean = false;
-  cosPhi: boolean = false;
-  potenzaAtt: boolean = false;
-  TR1: boolean = false;
-  TR2: boolean = false;
-  FV: boolean = false;
-  BS1: boolean = false;
-  BS2: boolean = false;
-  B9: boolean = false;
-  isButtonEnabled: boolean = false;
+  data: any;
+
+ checkboxStates = {
+    corrente: false,
+    tensione: false,
+    potenzaReatt: false,
+    potenzaApp: false,
+    cosPhi: false,
+    potenzaAtt: false,
+    TR1: false,
+    TR2: false,
+    FV: false,
+    BS1: false,
+    BS2: false,
+    B9: false
+  };
 
 
   constructor(private apiService: Tension, private SharedService: SharedService) {}
@@ -107,30 +113,32 @@ export class HomePage implements OnInit{
     
   }
 
+onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: boolean) {
+  this.checkboxStates[checkboxName] = isChecked;
+  this.updateButtonState(); // Call this to update the button's enabled state
+  }
+
   updateButtonState() {
-  // Group 1: Elements from 'corrente' to 'potenzaReatt'
-  const group1Selected = [
-    this.corrente,
-    this.tensione,
-    this.cosPhi,
-    this.potenzaApp,
-    this.potenzaAtt,
-    this.potenzaReatt
-  ].some(Boolean); // Check if at least one checkbox from Group 1 is selected
+    const group1Selected = [
+      this.checkboxStates.corrente,
+      this.checkboxStates.tensione,
+      this.checkboxStates.cosPhi,
+      this.checkboxStates.potenzaApp,
+      this.checkboxStates.potenzaAtt,
+      this.checkboxStates.potenzaReatt
+    ].some(Boolean);
 
-  // Group 2: Elements from 'TR1' to 'B9'
-  const group2Selected = [
-    this.TR1,
-    this.TR2,
-    this.FV,
-    this.BS1,
-    this.BS2,
-    this.B9
-  ].some(Boolean); // Check if at least one checkbox from Group 2 is selected
+    const group2Selected = [
+      this.checkboxStates.TR1,
+      this.checkboxStates.TR2,
+      this.checkboxStates.FV,
+      this.checkboxStates.BS1,
+      this.checkboxStates.BS2,
+      this.checkboxStates.B9
+    ].some(Boolean);
 
-  // Enable the button only if one checkbox is selected in each group
-  this.isButtonEnabled = group1Selected && group2Selected;
-}
+    this.isButtonEnabled = group1Selected && group2Selected;
+  }
 
   /*updateButtonState() {
   const selectedItemsCount = [
@@ -211,7 +219,7 @@ export class HomePage implements OnInit{
   
 
   selectDate(){
-    if( this.corrente == true){
+    if( this['corrente'] == true){
       console.log("ciao")
     }
     this.apiService.selectRangeDate(this.startDateValue, this.endDateValue).subscribe(
@@ -220,7 +228,7 @@ export class HomePage implements OnInit{
         this.data = data;
         //this.data2 = data;
         this.SharedService.setData(this.data)
-      },
+      }, 
       error => {
         console.error('Error:', error);
         // Handle the error here
