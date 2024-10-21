@@ -78,7 +78,7 @@
 
                             <!-- Checkbox Potenza Attiva -->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="potenzaAtt" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['potenzaAtt']" (ionChange)="updateButtonState()">
                                 KW ( Potenza Attiva istantanea )
                               </ion-checkbox>
                               <ion-button shape="round" id="KW-trigger">INFO</ion-button>
@@ -92,7 +92,7 @@
 
                             <!-- Checkbox Potenza Apparente-->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="potenzaApp" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['potenzaApp']" (ionChange)="updateButtonState()">
                                 KVA ( Potenza Apparente istantanea )
                               </ion-checkbox>
                               <ion-button shape="round" id="KVA-trigger">INFO</ion-button>
@@ -105,7 +105,7 @@
 
                             <!-- Checkbox Potenza Reattiva-->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="potenzaReatt" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['potenzaReatt']" (ionChange)="updateButtonState()">
                                 KVAr ( Potenza Reattiva istantanea )
                               </ion-checkbox>
                               <ion-button shape="round" id="KVAr-trigger">INFO</ion-button>
@@ -123,7 +123,7 @@
 
                             <!-- Checkbox CosPhi-->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="cosPhi" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['cosPhi']" (ionChange)="updateButtonState()">
                                 φ ( Coseno di Phi istantaneo )
                               </ion-checkbox>
                               <ion-button shape="round" id="COS-trigger">INFO</ion-button>
@@ -136,7 +136,7 @@
                             
                             <!-- Checkbox Corrente-->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="corrente" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['corrente']" (ionChange)="updateButtonState()">
                                 A ( Corrente istantanea )
                               </ion-checkbox>
                               <ion-button shape="round" id="A-trigger">INFO</ion-button>
@@ -149,7 +149,7 @@
 
                             <!-- Checkbox Tensione-->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="tensione" (ionChange)="updateButtonState()">
+                              <ion-checkbox [(ngModel)]="checkboxStates['tensione']" (ionChange)="updateButtonState()">
                                 V ( Tensione istantanea )
                               </ion-checkbox>
                               <ion-button shape="round" id="V-trigger">INFO</ion-button>
@@ -172,7 +172,7 @@
 
                             <!-- Trasformatore 1 -->
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="TR1" (ionChange)="updateButtonState()"> TRASFORMATORE 1</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['TR1']" (ionChange)="updateButtonState()"> TRASFORMATORE 1</ion-checkbox>
                               <ion-button shape="round" id="TR1-trigger">INFO</ion-button>
                               <ion-popover trigger="TR1-trigger" triggerAction="click">
                                 <ng-template>
@@ -182,7 +182,7 @@
                             </ion-item>
 
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="TR2" (ionChange)="updateButtonState()"> TRASFORMATORE 2</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['TR2']" (ionChange)="updateButtonState()"> TRASFORMATORE 2</ion-checkbox>
                               <ion-button shape="round" id="TR2-trigger">INFO</ion-button>
                               <ion-popover trigger="TR2-trigger" triggerAction="click">
                                 <ng-template>
@@ -191,7 +191,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="FV" (ionChange)="updateButtonState()"> FOTOVOLTAICO </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['FV']" (ionChange)="updateButtonState()"> FOTOVOLTAICO </ion-checkbox>
                               <ion-button shape="round" id="FV-trigger">INFO</ion-button>
                               <ion-popover trigger="FV-trigger" triggerAction="click">
                                 <ng-template>
@@ -204,7 +204,7 @@
                         <ion-col>
                           <ion-list>
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="BS1" (ionChange)="updateButtonState()"> BS1 1250A ( chiller Gaudino )</ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['BS1']" (ionChange)="updateButtonState()"> BS1 1250A ( chiller Gaudino )</ion-checkbox>
                               <ion-button shape="round" id="BS1-trigger">INFO</ion-button>
                               <ion-popover trigger="BS1-trigger" triggerAction="click">
                                 <ng-template>
@@ -213,7 +213,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="BS2" (ionChange)="updateButtonState()"> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['BS2']" (ionChange)="updateButtonState()"> BS2 1250A ( soppalco Ingredienti ) </ion-checkbox>
                               <ion-button shape="round" id="BS2-trigger">INFO</ion-button>
                               <ion-popover trigger="BS2-trigger" triggerAction="click">
                                 <ng-template>
@@ -222,7 +222,7 @@
                               </ion-popover>
                             </ion-item>
                             <ion-item>
-                              <ion-checkbox [(ngModel)]="B9" (ionChange)="updateButtonState()"> B9 1600A ( UTA ) </ion-checkbox>
+                              <ion-checkbox [(ngModel)]="checkboxStates['B9']" (ionChange)="updateButtonState()"> B9 1600A ( UTA ) </ion-checkbox>
                               <ion-button shape="round" id="B9-trigger">INFO</ion-button>
                               <ion-popover trigger="B9-trigger" triggerAction="click">
                                 <ng-template>
@@ -246,7 +246,7 @@
       <ion-row>
         <ion-col>
 
-          <ion-card *ngIf="data && (corrente || tensione)">
+          <ion-card *ngIf="data && (checkboxStates['corrente'] || checkboxStates['tensione'])">
             <ion-card-header>
               <ion-card-title>GRAFICI CORRENTE ( A ) E TENSIONE ( V )</ion-card-title>
               <ion-card-subtitle>Grafici che mostrano la corrente e la tenasione del periodo e degli apparecchi selezionati</ion-card-subtitle>
@@ -254,7 +254,7 @@
             <ion-card-content>
               <ion-list>
                 
-                <ion-item *ngIf="tensione">
+                <ion-item *ngIf="checkboxStates['tensione']">
                     <ion-item-divider color="light">
                       <ion-label> TENSIONE </ion-label>
                     </ion-item-divider>
@@ -262,7 +262,7 @@
                 </ion-item>
 
                 
-                <ion-item *ngIf="corrente">
+                <ion-item *ngIf="checkboxStates['corrente']">
                   <ion-item-divider color="light">
                     <ion-label> CORRENTE </ion-label>
                   </ion-item-divider>
@@ -277,7 +277,7 @@
 
       <!-- Grafico Potenza Attiva -->
       <ion-row>
-          <ion-card *ngIf="data && potenzaAtt">
+          <ion-card *ngIf="data && checkboxStates['potenzaAtt']">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>
@@ -296,7 +296,7 @@
 
       <!-- Grafico Potenza Reattiva -->
       <ion-row>
-          <ion-card *ngIf="data && potenzaReatt">
+          <ion-card *ngIf="data && checkboxStates['potenzaReatt']">
           <ion-card-header>
             <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
             <ion-card-subtitle>
@@ -315,7 +315,7 @@
       <!-- Grafico Potenza Apparente -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data && potenzaApp">
+          <ion-card *ngIf="data && checkboxStates['potenzaApp']">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
               <ion-card-subtitle>
@@ -336,7 +336,7 @@
       <!-- Grafico CosPhi -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data && cosPhi">
+          <ion-card *ngIf="data && checkboxStates['cosPhi']">
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>

@@ -58,6 +58,10 @@ export class HomePage implements OnInit{
   };
 
 
+
+
+
+
   constructor(private apiService: Tension, private SharedService: SharedService) {}
 
   ngOnInit(){
@@ -112,6 +116,8 @@ export class HomePage implements OnInit{
   existData(){
     
   }
+
+  
 
 onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: boolean) {
   this.checkboxStates[checkboxName] = isChecked;
@@ -218,11 +224,14 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
   }
   
 
-  selectDate(){
+  /*selectDate(){
+    const selectedTransformers = Object.keys(this.checkboxStates)
+    .filter(key => this.checkboxStates[key] && (key.startsWith('TR') || key === 'FV' || key === 'BS1' || key === 'BS2' || key === 'B9'));
+    
     if( this['corrente'] == true){
       console.log("ciao")
     }
-    this.apiService.selectRangeDate(this.startDateValue, this.endDateValue).subscribe(
+    this.apiService.selectRangeDate(this['transformer'], this.startDateValue, this.endDateValue).subscribe(
       (data) => {
         console.log('Data:', data);
         this.data = data;
@@ -234,7 +243,37 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
         // Handle the error here
       }
     )
+  }*/
+
+    selectDate() {
+  // Find which transformer is selected from the checkboxStates
+  const selectedTransformers = Object.keys(this.checkboxStates)
+    .filter(key => this.checkboxStates[key as keyof typeof this.checkboxStates] && 
+      (key.startsWith('TR') || key === 'FV' || key === 'BS1' || key === 'BS2' || key === 'B9'));
+
+  if (selectedTransformers.length === 0) {
+    console.error('No transformer selected');
+    return;
   }
+
+  // Assuming you only need to send one transformer in the API call, you can use the first selected transformer
+  const selectedTransformer = selectedTransformers[0];
+
+  // Log for debugging
+  console.log('Selected transformer:', selectedTransformer);
+
+  this.apiService.selectRangeDate(selectedTransformer, this.startDateValue, this.endDateValue).subscribe(
+    (data) => {
+      console.log('Data:', data);
+      this.data = data;
+      this.SharedService.setData(this.data);
+    },
+    error => {
+      console.error('Error:', error);
+    }
+  );
+}
+
 
   onChange(_date: Date){
     console.log(this.dateValue)
