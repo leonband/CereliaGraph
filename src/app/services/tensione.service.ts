@@ -18,11 +18,16 @@ export class Tension {
         return this.http.get<ApiResult>(`${BASE_URL}/api/porzionatrice_stop_cycle`);
     }
 
-    selectRangeDate(transformer: string, startDate: string, endDate:string): Observable<ApiResult>{
+    selectRangeDate(requestBody: { transformers: string[], metrics: string[], startDate: string, endDate: string }): Observable<ApiResult> {
       let params = new HttpParams();
-      params = params.append('transformer', transformer);
-      params = params.append('startDate', startDate);
-      params = params.append('endDate', endDate);
-      return this.http.get<ApiResult>(`${BASE_URL}/api/range_date`, {params: params});
+      params = params.append('startDate', requestBody.startDate);
+      params = params.append('endDate', requestBody.endDate);
+
+      // Append transformers and metrics as comma-separated values
+      params = params.append('transformers', requestBody.transformers.join(','));
+      params = params.append('metrics', requestBody.metrics.join(','));
+
+      return this.http.get<ApiResult>(`${BASE_URL}/api/range_date`, { params: params });
     }
+
 }

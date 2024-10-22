@@ -125,26 +125,27 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
   }
 
   updateButtonState() {
-    const group1Selected = [
-      this.checkboxStates.corrente,
-      this.checkboxStates.tensione,
-      this.checkboxStates.cosPhi,
-      this.checkboxStates.potenzaApp,
-      this.checkboxStates.potenzaAtt,
-      this.checkboxStates.potenzaReatt
-    ].some(Boolean);
+  const group1Selected = [
+    this.checkboxStates.corrente,
+    this.checkboxStates.tensione,
+    this.checkboxStates.cosPhi,
+    this.checkboxStates.potenzaApp,
+    this.checkboxStates.potenzaAtt,
+    this.checkboxStates.potenzaReatt
+  ].some(Boolean);
 
-    const group2Selected = [
-      this.checkboxStates.TR1,
-      this.checkboxStates.TR2,
-      this.checkboxStates.FV,
-      this.checkboxStates.BS1,
-      this.checkboxStates.BS2,
-      this.checkboxStates.B9
-    ].some(Boolean);
+  const group2Selected = [
+    this.checkboxStates.TR1,
+    this.checkboxStates.TR2,
+    this.checkboxStates.FV,
+    this.checkboxStates.BS1,
+    this.checkboxStates.BS2,
+    this.checkboxStates.B9
+  ].some(Boolean);
 
-    this.isButtonEnabled = group1Selected && group2Selected;
-  }
+  this.isButtonEnabled = group1Selected && group2Selected;
+}
+
 
   /*updateButtonState() {
   const selectedItemsCount = [
@@ -245,6 +246,8 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
     )
   }*/
 
+    /* ---------------- old selection date ---------------
+    
     selectDate() {
   // Find which transformer is selected from the checkboxStates
   const selectedTransformers = Object.keys(this.checkboxStates)
@@ -263,6 +266,46 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
   console.log('Selected transformer:', selectedTransformer);
 
   this.apiService.selectRangeDate(selectedTransformer, this.startDateValue, this.endDateValue).subscribe(
+    (data) => {
+      console.log('Data:', data);
+      this.data = data;
+      this.SharedService.setData(this.data);
+    },
+    error => {
+      console.error('Error:', error);
+    }
+  );
+    }
+     ---------------- old selection date --------------- */
+
+     selectDate() {
+  // Get all selected transformers (from Group 2)
+  const selectedTransformers = Object.keys(this.checkboxStates)
+    .filter(key => this.checkboxStates[key as keyof typeof this.checkboxStates] && 
+      (key.startsWith('TR') || key === 'FV' || key === 'BS1' || key === 'BS2' || key === 'B9'));
+
+  // Get all selected Group 1 values (e.g., corrente, tensione, etc.)
+  const selectedMetrics = Object.keys(this.checkboxStates)
+    .filter(key => this.checkboxStates[key as keyof typeof this.checkboxStates] && 
+      (key === 'corrente' || key === 'tensione' || key === 'cosPhi' || key === 'potenzaApp' || key === 'potenzaAtt' || key === 'potenzaReatt'));
+
+  // Check if at least one transformer and one metric are selected
+  if (selectedTransformers.length === 0 || selectedMetrics.length === 0) {
+    console.error('No transformer or metric selected');
+    return;
+  }
+
+  // Log for debugging
+  console.log('Selected transformers:', selectedTransformers);
+  console.log('Selected metrics:', selectedMetrics);
+
+  // Make the API call with the selected transformers and metrics, along with the date range
+  this.apiService.selectRangeDate({
+    transformers: selectedTransformers, 
+    metrics: selectedMetrics, 
+    startDate: this.startDateValue, 
+    endDate: this.endDateValue
+  }).subscribe(
     (data) => {
       console.log('Data:', data);
       this.data = data;
