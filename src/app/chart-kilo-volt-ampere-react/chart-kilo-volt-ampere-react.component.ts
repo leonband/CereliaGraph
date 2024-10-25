@@ -19,9 +19,9 @@ dataSource!: object;
   }
 
  ngOnInit() {
-    this.dataSubscription = this.sharedService.getDataObservable().subscribe(
-      data => {
-      this.configureChart(data);
+    this.dataSubscription = this.sharedService.getKiloVarObservable().subscribe(
+      datakilovar => {
+      this.configureChart(datakilovar);
     });
   }
 

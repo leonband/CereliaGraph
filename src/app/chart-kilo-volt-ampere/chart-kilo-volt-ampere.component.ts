@@ -18,9 +18,9 @@ export class ChartKiloVoltAmpereComponent  implements OnInit {
   }
 
  ngOnInit() {
-    this.dataSubscription = this.sharedService.getDataObservable().subscribe(
-      data => {
-      this.configureChart(data);
+    this.dataSubscription = this.sharedService.getKiloVoltAmpereObservable().subscribe(
+      datakilovoltampere => {
+      this.configureChart(datakilovoltampere);
     });
   }
 

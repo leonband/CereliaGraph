@@ -1,3 +1,4 @@
+import { ApiResult } from './../services/interfaces';
 import { SharedService } from './../shared.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonDatetime,
@@ -41,6 +42,12 @@ export class HomePage implements OnInit{
   startDateValue: string = '';
   endDateValue: string = '';
   data: any;
+  dataamp: any;
+  datavolt: any;
+  datakilowatt: any;
+  datakilovolt: any;
+  datakilovar: any;
+  datacos: any;
 
  checkboxStates = {
     corrente: false,
@@ -66,7 +73,7 @@ export class HomePage implements OnInit{
 
   ngOnInit(){
     //this.loadData();
-    this.data = this.SharedService.getData();
+    //this.data = this.SharedService.getData();
     this['healthCheckService'].startHealthCheck().subscribe((response: any) => {
       console.log('Health check response:', response);
     });
@@ -354,8 +361,6 @@ onCheckboxChange(checkboxName: keyof typeof this.checkboxStates, isChecked: bool
   checkedItems = [];
   
 }
-
-
 
 
 function dateChanged(event: Event | undefined, CustomEvent: { new <T>(type: string, eventInitDict?: CustomEventInit<T> | undefined): CustomEvent<T>; prototype: CustomEvent<any>; }) {

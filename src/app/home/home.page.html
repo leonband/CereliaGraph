@@ -246,7 +246,7 @@
       <ion-row>
         <ion-col>
 
-          <ion-card *ngIf="data && (checkboxStates['corrente'] || checkboxStates['tensione'])">
+          <ion-card *ngIf="datavolt && dataamp && (checkboxStates['corrente'] || checkboxStates['tensione'])">
             <ion-card-header>
               <ion-card-title>GRAFICI CORRENTE ( A ) E TENSIONE ( V )</ion-card-title>
               <ion-card-subtitle>Grafici che mostrano la corrente e la tenasione del periodo e degli apparecchi selezionati</ion-card-subtitle>
@@ -258,7 +258,7 @@
                     <ion-item-divider color="light">
                       <ion-label> TENSIONE </ion-label>
                     </ion-item-divider>
-                    <chart-container ></chart-container>
+                    <chart-container *ngIf="datavolt"></chart-container>
                 </ion-item>
 
                 
@@ -266,7 +266,7 @@
                   <ion-item-divider color="light">
                     <ion-label> CORRENTE </ion-label>
                   </ion-item-divider>
-                  <app-chart-corrente></app-chart-corrente>
+                  <app-chart-corrente *ngIf="dataamp"></app-chart-corrente>
                 </ion-item>
 
             </ion-list>
@@ -277,7 +277,7 @@
 
       <!-- Grafico Potenza Attiva -->
       <ion-row>
-          <ion-card *ngIf="data && checkboxStates['potenzaAtt']">
+          <ion-card *ngIf="datakilowatt && checkboxStates['potenzaAtt']">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA ATTIVA ( kW )</ion-card-title>
               <ion-card-subtitle>
@@ -288,7 +288,7 @@
           
             <ion-card-content>
               <ion-item>
-                <app-chart-kilo-watt *ngIf="data"></app-chart-kilo-watt>
+                <app-chart-kilo-watt *ngIf="datakilowatt"></app-chart-kilo-watt>
               </ion-item>
             </ion-card-content>
           </ion-card>
@@ -296,7 +296,7 @@
 
       <!-- Grafico Potenza Reattiva -->
       <ion-row>
-          <ion-card *ngIf="data && checkboxStates['potenzaReatt']">
+          <ion-card *ngIf="datakilovolt && checkboxStates['potenzaReatt']">
           <ion-card-header>
             <ion-card-title>GRAFICO POTENZA REATTIVA ( kVA )</ion-card-title>
             <ion-card-subtitle>
@@ -306,7 +306,7 @@
         
           <ion-card-content>
             <ion-item>
-              <app-chart-kilo-volt-ampere-react *ngIf="data"></app-chart-kilo-volt-ampere-react>
+              <app-chart-kilo-volt-ampere-react *ngIf="datavolt"></app-chart-kilo-volt-ampere-react>
             </ion-item>
           </ion-card-content>
         </ion-card>
@@ -315,7 +315,7 @@
       <!-- Grafico Potenza Apparente -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data && checkboxStates['potenzaApp']">
+          <ion-card *ngIf="datakilovar && checkboxStates['potenzaApp']">
             <ion-card-header>
               <ion-card-title>GRAFICO POTENZA APPARENTE ( kVar )</ion-card-title>
               <ion-card-subtitle>
@@ -326,7 +326,7 @@
           
             <ion-card-content>
               <ion-item>
-                <app-chart-kilo-volt-ampere *ngIf="data"></app-chart-kilo-volt-ampere>
+                <app-chart-kilo-volt-ampere *ngIf="datakilovar"></app-chart-kilo-volt-ampere>
               </ion-item>
             </ion-card-content>
           </ion-card>
@@ -336,7 +336,7 @@
       <!-- Grafico CosPhi -->
       <ion-row>
         <ion-col>
-          <ion-card *ngIf="data && checkboxStates['cosPhi']">
+          <ion-card *ngIf="datacos && checkboxStates['cosPhi']">
             <ion-card-header>
               <ion-card-title>GRAFICO CosFi ( φ )</ion-card-title>
               <ion-card-subtitle>
@@ -347,7 +347,7 @@
           
             <ion-card-content>
               <ion-item>
-                <app-chart-cos-phi *ngIf="data"></app-chart-cos-phi>
+                <app-chart-cos-phi *ngIf="datacos"></app-chart-cos-phi>
               </ion-item>
             </ion-card-content>
           </ion-card>
